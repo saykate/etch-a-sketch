@@ -8,6 +8,13 @@
     font-size: 1.5em;
     padding-bottom: 2rem;
 }
+#grid-size {
+    border: 1px solid black;
+    font-size: 1.5rem;
+    padding: .5rem;
+    text-align: center;
+    background-color: rgb(251, 245, 235);
+}
 .sketch-pad {
     display: flex;
     background-color: bisque;
@@ -16,7 +23,7 @@
 }
 .column {
     flex: 1;
-    border: 1px solid red;
+    border: 1px solid salmon;
     display: flex;
     flex-direction: column;
 }

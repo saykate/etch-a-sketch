@@ -1,9 +1,14 @@
+
+let sketchPad = document.querySelector('.sketch-pad');
+let gridSize = document.querySelector('#grid-size');
+let apply = document.querySelector('.apply');
 let rows = 16; 
 let columns = 16; 
 
-let sketchPad = document.querySelector(".sketch-pad");
-
-//create column in the number of given columns
+const createGrid = () => {
+    rows = gridSize; 
+    columns = gridSize
+    //create column in the number of given columns
 for (let i = 0; i < columns; i++) {
     let column = document.createElement('div'); 
     column.className = 'column';
@@ -15,3 +20,10 @@ for (let i = 0; i < columns; i++) {
     }
     sketchPad.append(column)
 }
+}
+
+// createGrid();
+
+apply.addEventListener('click', createGrid);
+
+
