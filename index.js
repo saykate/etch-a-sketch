@@ -1,9 +1,17 @@
 let sketchPad = document.querySelector(".sketch-pad");
 let gridSize = document.querySelector("#js-grid-size");
 let apply = document.querySelector("#js-apply");
+let column = 0;
+let row = 0
+let mouseDown = false;
 
-const testFun = (event) => {
-	event.target.classList.add('active')
+sketchPad.onmousedown = () => (mouseDown = true);
+sketchPad.onmouseup = () => (mouseDown = false);
+
+const draw = (event) => {
+  if (mouseDown){
+	event.target.classList.toggle('active');
+	console.log(event)}
 }
 
 const createGrid = () => {
@@ -13,21 +21,35 @@ const createGrid = () => {
 	//reset grid when apply is clicked
 	sketchPad.innerHTML = ''
 
-  //create column in the number of given columns
+  // create column in the number of given columns
   for (let i = 0; i < columns; i++) {
-    let column = document.createElement("div");
+    column = document.createElement("div");
     column.className = "column";
     //create row in the number of given rows
     for (let j = 0; j < rows; j++) {
-      let row = document.createElement("div");
+      row = document.createElement("div");
       row.className = "row";
-			row.addEventListener('mouseover', testFun)
       column.appendChild(row);
     }
-    sketchPad.append(column);
-  }
-	// sketchPad.addEventListener('mouseover', testFun)
+    sketchPad.appendChild(column);
+    sketchPad.addEventListener('mousedown', draw);
+    sketchPad.addEventListener('mouseover', draw);
+  }   
 };
 
 apply.addEventListener('click', createGrid)
+
+
+
+//row.addEventListener isn't recognized as a valid DOM 
+//element?, but if I do sketchPad it sometimes selects
+//the whole column. So row is what needs to be targeted....how?
+
+
+
+
+
+
+
+
 
