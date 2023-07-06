@@ -1,16 +1,23 @@
 let sketchPad = document.querySelector(".sketch-pad");
 let gridSize = document.querySelector("#js-grid-size");
 let apply = document.querySelector("#js-apply");
+// let drawButton = document.querySelector('#js-draw');
+// let eraseButton = document.querySelector('js-erase');
 let mouseDown = false;
 
 
 
 const draw = (event) => {
-  console.log({mouseDown});
   if (mouseDown){
-	event.target.classList.add('active');
+	event.target.classList.toggle('active');
 }
 }
+
+// const erase = (event) => {
+//   if (mouseDown){
+// 	event.target.classList.remove('active');
+// }
+// }
 
 const createGrid = () => {
   let rows = gridSize.value;
@@ -32,12 +39,14 @@ const createGrid = () => {
       row.onmouseup = () => (mouseDown = false);
       row.addEventListener('mousedown', draw);
       row.addEventListener('mouseover', draw);
-    }
+  }
     sketchPad.appendChild(column);
-  }   
-};
+  }
+}
 
-apply.addEventListener('click', createGrid)
+apply.addEventListener('click', createGrid);
+// drawButton.addEventListener('click', draw);
+// eraseButton.addEventListener('click', erase);
 
 
 
