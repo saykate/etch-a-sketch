@@ -1,23 +1,21 @@
 let sketchPad = document.querySelector(".sketch-pad");
-let gridSize = document.querySelector("#js-grid-size");
-let apply = document.querySelector("#js-apply");
-// let drawButton = document.querySelector('#js-draw');
-// let eraseButton = document.querySelector('js-erase');
+let gridSize = document.querySelector('.grid-size');
+let apply = document.querySelector('.apply');
 let mouseDown = false;
+let eraseButton = document.querySelector('.erase');
+let eraseMode = false;
 
-
-
-const draw = (event) => {
-  if (mouseDown){
-	event.target.classList.toggle('active');
+const draw = (mouseDownEvent) => {
+  if (mouseDown) {
+    if(eraseMode) {
+      eraseButton.textContent = "Draw";
+      mouseDownEvent.target.classList.remove('active');
+    }else {
+      eraseButton.textContent = "Erase";
+      mouseDownEvent.target.classList.add('active');
+    }
 }
 }
-
-// const erase = (event) => {
-//   if (mouseDown){
-// 	event.target.classList.remove('active');
-// }
-// }
 
 const createGrid = () => {
   let rows = gridSize.value;
@@ -38,15 +36,15 @@ const createGrid = () => {
       row.onmousedown = () => (mouseDown = true);
       row.onmouseup = () => (mouseDown = false);
       row.addEventListener('mousedown', draw);
-      row.addEventListener('mouseover', draw);
+      row.addEventListener('mouseover', draw); 
   }
     sketchPad.appendChild(column);
   }
 }
 
 apply.addEventListener('click', createGrid);
-// drawButton.addEventListener('click', draw);
-// eraseButton.addEventListener('click', erase);
+
+eraseButton.addEventListener('click', (e) =>{eraseMode = !eraseMode});
 
 
 
