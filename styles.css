@@ -23,6 +23,7 @@
 }
 .apply {
     font-size: 1rem;
+    border: 1px solid black;
     padding: .25rem 1.5rem;
     background-color: rgb(213, 187, 184);
     border-radius: 5px;
